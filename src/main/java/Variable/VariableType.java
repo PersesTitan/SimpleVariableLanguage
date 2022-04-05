@@ -1,10 +1,10 @@
 package Variable;
 
 import Setting.Checked;
-import Setting.Setting;
 import Setting.Local;
+import Setting.Setting;
+import jakarta.validation.constraints.NotBlank;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
 
