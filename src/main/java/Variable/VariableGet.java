@@ -2,8 +2,7 @@ package Variable;
 
 import Setting.Checked;
 import Setting.Setting;
-
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public class VariableGet extends Setting implements Checked {
     /**
