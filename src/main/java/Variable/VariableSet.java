@@ -1,9 +1,9 @@
 package Variable;
 
-import Setting.Setting;
 import Setting.Local;
+import Setting.Setting;
+import jakarta.validation.constraints.NotBlank;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.util.ArrayList;
