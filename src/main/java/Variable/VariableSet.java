@@ -15,6 +15,8 @@ public class VariableSet extends Setting {
     private String start = null;
     private String end = null;
 
+    /* 생성자 */
+
     public VariableSet() {}
 
     /**
@@ -36,6 +38,8 @@ public class VariableSet extends Setting {
         else if (local.equals(Local.END)) this.end = var;
         else throw new IOException("local 값을 정확하게 입력해세주세요");
     }
+
+    /* 메소드 */
 
     /**
      * 변수 이름을 가져오는 메소드.
