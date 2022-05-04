@@ -12,4 +12,5 @@ public class Setting {
      * mode = false 일때 위치 상관 없음
      */
     protected boolean mode = true;
+
 }

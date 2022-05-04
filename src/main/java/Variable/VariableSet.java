@@ -1,8 +1,7 @@
 package Variable;
 
-import Setting.Local;
 import Setting.Setting;
-import Setting.Checked;
+import Setting.Local;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -12,18 +11,30 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Variable extends Setting implements Checked {
+public class VariableSet extends Setting {
+    private String start = null;
+    private String end = null;
 
-    private final String start;
-    private final String end;
+    public VariableSet() {}
 
     /**
      * @param start 처음 변수 조건
      * @param end 마지막 변수 조건
      */
-    public Variable(@NotBlank String start, @NotBlank String end) {
+    public VariableSet(@NotBlank String start, @NotBlank String end) {
         this.start = start;
         this.end = end;
+    }
+
+    /**
+     * @param var start 값 또는 end 값
+     * @param local start 인지 end 인지 설정
+     * @throws IOException start, end 두게다 조건이 불일치 할 시 에러
+     */
+    public VariableSet(@NotBlank String var, @NotNull Local local) throws IOException {
+        if (local.equals(Local.START)) this.start = var;
+        else if (local.equals(Local.END)) this.end = var;
+        else throw new IOException("local 값을 정확하게 입력해세주세요");
     }
 
     /**
@@ -98,25 +109,12 @@ public class Variable extends Setting implements Checked {
     }
 
     /**
-     * @param name key 값
-     * @return 변수에 값이 존재시 값을 반환함
-     * @throws NullPointerException 변수 이름이 존재하지 않을때 throw
+     * 변수안에 값을 넣는 메소드입니다.
+     * @param name 변수 이름
+     * @param value 변수 내용
      */
-    public Object getVarValue(@NotBlank String name) throws NullPointerException {
-        try {
-            return variable.get(name.strip());
-        } catch (Exception e) {
-            throw new NullPointerException("값이 존재하지 않습니다.");
-        }
+    public void putValue (@NotBlank Object name, @NotBlank Object value) {
+        variable.put(name, value);
     }
 
-    /**
-     * existence map 에 변수의 존재 여부를 판단함
-     * @param line 값을 가져옵니다.
-     * @return 존재하면 true 를 반환함
-     */
-    @Override
-    public boolean checkedVar(String line) {
-        return variable.containsKey(line);
-    }
 }

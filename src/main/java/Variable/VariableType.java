@@ -2,6 +2,7 @@ package Variable;
 
 import Setting.Checked;
 import Setting.Setting;
+import Setting.Local;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,22 +22,14 @@ public class VariableType extends Setting implements Checked {
 
     /**
      * @param var startVar 또는 endVar
-     * @param bool true 일때 startVar , false 일때 endVar
+     * @param local true 일때 startVar , false 일때 endVar
      * @param mode 모드 지정
      */
-    public VariableType(@NotBlank String var, @NotNull boolean bool, @NotNull boolean mode) {
+    public VariableType(@NotBlank String var, @NotNull Local local, @NotNull boolean mode) throws IOException {
         this.mode = mode;
-        if (bool) this.startVar = var;
-        else this.endVar = var;
-    }
-
-    /**
-     * 변수안에 값을 넣는 메소드입니다.
-     * @param name 변수 이름
-     * @param value 변수 내용
-     */
-    public void putValue (@NotBlank Object name,@NotBlank Object value) {
-        variable.put(name, value);
+        if (local.equals(Local.START)) this.startVar = var;
+        else if (local.equals(Local.END)) this.endVar = var;
+        else throw new IOException("Local 형식이 틀립니다.");
     }
 
     /**
