@@ -4,8 +4,8 @@ import Setting.Checked;
 import Setting.Local;
 import Setting.Setting;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-import javax.validation.constraints.NotNull;
 import java.io.IOException;
 
 public class VariableType extends Setting implements Checked {
